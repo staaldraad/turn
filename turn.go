@@ -27,4 +27,6 @@ var (
 	SendIndication = stun.NewType(stun.MethodSend, stun.ClassIndication)
 	// RefreshRequest is shorthand for refresh request message type.
 	RefreshRequest = stun.NewType(stun.MethodRefresh, stun.ClassRequest)
+	// ConnectRequest is shorthand for connect request message type.
+	ConnectRequest = stun.NewType(stun.MethodConnect, stun.ClassRequest)
 )

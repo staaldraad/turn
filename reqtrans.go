@@ -10,6 +10,8 @@ import (
 type Protocol byte
 
 const (
+	// ProtoTCP is IANA assigned protocol number for TCP.
+	ProtoTCP Protocol = 6
 	// ProtoUDP is IANA assigned protocol number for UDP.
 	ProtoUDP Protocol = 17
 )
@@ -18,6 +20,8 @@ func (p Protocol) String() string {
 	switch p {
 	case ProtoUDP:
 		return "UDP"
+	case ProtoTCP:
+		return "TCP"
 	default:
 		return strconv.Itoa(int(p))
 	}
@@ -68,4 +72,10 @@ func (t *RequestedTransport) GetFrom(m *stun.Message) error {
 // value ProtoUDP (17).
 var RequestedTransportUDP stun.Setter = RequestedTransport{
 	Protocol: ProtoUDP,
+}
+
+// RequestedTransportTCP is setter for requested transport attribute with
+// value ProtoTCP (6).
+var RequestedTransportTCP stun.Setter = RequestedTransport{
+	Protocol: ProtoTCP,
 }
