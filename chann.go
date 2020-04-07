@@ -14,10 +14,30 @@ import (
 // RFC 5766 Section 14.1
 type ChannelNumber uint16 // encoded as uint16
 
+// ConnectionID represents the CONNECTION-ID attribute.
+//
+// The CONNECTION-ID attribute contains the id of the TCP bound connection
+//
+// RFC 6062
+type ConnectionID uint32 // encoded as uint32
+
 func (n ChannelNumber) String() string { return strconv.Itoa(int(n)) }
+
+func (n ConnectionID) String() string { return strconv.Itoa(int(n)) }
 
 // 16 bits of uint + 16 bits of RFFU = 0.
 const channelNumberSize = 4
+
+// 32 bit number
+const connectionIDSize = 4
+
+// AddTo adds CONNECTION-ID to message.
+func (n ConnectionID) AddTo(m *stun.Message) error {
+	v := make([]byte, connectionIDSize)
+	bin.PutUint32(v, uint32(n))
+	m.Add(stun.AttrConnectionID, v)
+	return nil
+}
 
 // AddTo adds CHANNEL-NUMBER to message.
 func (n ChannelNumber) AddTo(m *stun.Message) error {

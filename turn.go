@@ -29,4 +29,6 @@ var (
 	RefreshRequest = stun.NewType(stun.MethodRefresh, stun.ClassRequest)
 	// ConnectRequest is shorthand for connect request message type.
 	ConnectRequest = stun.NewType(stun.MethodConnect, stun.ClassRequest)
+	// ConnectionBindRequest is shorthand for connect request message type.
+	ConnectBindRequest = stun.NewType(stun.MethodConnectionBind, stun.ClassRequest)
 )
